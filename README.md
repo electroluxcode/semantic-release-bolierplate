@@ -26,7 +26,6 @@
    - Commit statuses - read and write
    - Contents - read and write
    - Deployments - read and write
-4. 
 
 #### 2. NPM 令牌 (NPM_TOKEN)
 1. 访问 [npmjs.com](https://www.npmjs.com/)
@@ -45,7 +44,7 @@
 
 
 #### 5. releaserc.json
-```json
+```js
 {
   // 你自己的仓库地址
   repositoryUrl: '',
