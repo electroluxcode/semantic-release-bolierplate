@@ -1,0 +1,37 @@
+name: Release
+
+# 当 master 分支被 push,就会触发
+on:
+  push:
+    branches: [master]
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  packages: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: setup node
+        uses: actions/setup-node@v2.5.2
+        with:
+          node-version: "20.8.1" # node 版本
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm -v
+          node -v
+          npm cache clean --force
+          npm install -f
+          npx semantic-release
